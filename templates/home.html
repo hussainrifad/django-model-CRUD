@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block titile %} homepage {% endblock %}
+
+{% block content %}
+    <h5 class="my-3">This is Home Page</h5>
+    <div class="row row-cols-2 row-cols-md-3 g-4">
+    {% for album in albums %}
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">{{album.name}}</h5>
+                  <p class="card-text">Artist : {{album.artist.first_name}} {{album.artist.last_name}}</p>
+                  <p>Release date : {{album.release_date}}</p>
+                  <div class="d-flex justify-content-between">
+                    <a href="{% url 'deletealbum' album.id %}" class="btn btn-danger">DELETE</a>
+                    <a href="{% url 'updatealbum' album.id %}" class="btn btn-primary">UPDATE</a>
+                  </div>
+                </div>
+            </div>              
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
